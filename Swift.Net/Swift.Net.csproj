@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>Swift.Net</AssemblyName>
+    <RootNamespace>Swift.Net</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="SWIFTFramework">
+      <HintPath>..\..\..\..\Desktop\SWIFTFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
