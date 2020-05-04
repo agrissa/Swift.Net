@@ -10,7 +10,7 @@ namespace Swift.Net
         public string MessageType { get; set; }
         public string MessagePriority { get; set; }
 
-        public override string BlockName => "Application headers";
+        public override string BlockName => "Application header";
         public override int BlockIdentifier => 2;
 
         public override bool Equals(object obj)
