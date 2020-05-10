@@ -13,7 +13,7 @@ namespace Swift.Net
         public SwiftBlock1 Block1 { get; set; }
         public SwiftBlock2 Block2 { get; set; }
         public SwiftBlock3 Block3 { get; set; }
-        public SwiftBlock4 Block4 { get; set; }
+        public virtual SwiftBlock4 Block4 { get; set; }
         public SwiftBlock5 Block5 { get; set; }
 
         public SwiftBlockBase GetBlock(int blocIdentifier)

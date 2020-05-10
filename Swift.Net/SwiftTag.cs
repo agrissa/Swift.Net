@@ -54,14 +54,14 @@ namespace Swift.Net
             if (tag == null) { return false; }
             if (ReferenceEquals(this, tag)) { return true; }
             return Name == tag.Name &&
-                   Value == tag.Value;
+                   Value?.Replace("\r", "") == tag.Value?.Replace("\r", "");
         }
 
         public override int GetHashCode()
         {
             int hashCode = -1205067161;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Value);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name?.Replace("\r", ""));
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Value?.Replace("\r", ""));
             return hashCode;
         }
 

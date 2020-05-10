@@ -10,8 +10,8 @@ namespace Swift.Net
         public string MessageType { get; set; }
         public string MessagePriority { get; set; }
 
-        public override string BlockName => "Application header";
-        public override int BlockIdentifier => 2;
+        public string BlockName => "Application header";
+        public int BlockIdentifier => 2;
 
         public override bool Equals(object obj)
         {
@@ -35,5 +35,8 @@ namespace Swift.Net
             hashCode = hashCode * -1521134295 + BlockIdentifier.GetHashCode();
             return hashCode;
         }
+
+        public abstract string GetValue();
+        public abstract void SetValue(string blockText);
     }
 }

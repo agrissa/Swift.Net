@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Swift.Net
 {
-    public abstract class SwiftBlockBase
+    public interface SwiftBlockBase
     {
-        public abstract string BlockName { get; }
-        public abstract int BlockIdentifier { get; }
+        public string BlockName { get; }
+        public int BlockIdentifier { get; }
 
-        public abstract void SetValue(string blockText);
-        public abstract string GetValue();
+        public void SetValue(string blockText);
+        public string GetValue();
     }
 }

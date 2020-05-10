@@ -4,16 +4,16 @@ using System.Text;
 
 namespace Swift.Net
 {
-    public class SwiftBlock4 : SwiftTagListBlock
+    public class SwiftBlock4 : SwiftTagList, SwiftBlockBase
     {
-        public override string BlockName => "Text";
-        public override int BlockIdentifier => 4;
+        public string BlockName => "Text";
+        public int BlockIdentifier => 4;
 
         public SwiftBlock4()
         {
         }
 
-        public SwiftBlock4(SwiftTagListBlock swiftTags) : base(swiftTags)
+        public SwiftBlock4(SwiftTagList swiftTags) : base(swiftTags)
         {
         }
 
@@ -22,12 +22,12 @@ namespace Swift.Net
             SetValue(blockText);
         }
 
-        public override void SetValue(string blockText)
+        public void SetValue(string blockText)
         {
-            SetBlockText(blockText);
+            SetBlockText(blockText, BlockIdentifier);
         }
 
-        public override string GetValue()
+        public string GetValue()
         {
             return GetBlockText();
         }

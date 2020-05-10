@@ -5,16 +5,16 @@ using System.Linq;
 
 namespace Swift.Net
 {
-    public abstract class SwiftTagListBlock : SwiftBlockBase, IEnumerable<SwiftTag>, IList<SwiftTag>
+    public class SwiftTagList : IEnumerable<SwiftTag>, IList<SwiftTag>
     {
         private readonly List<SwiftTag> Tags;
 
-        public SwiftTagListBlock()
+        public SwiftTagList()
         {
             Tags = new List<SwiftTag>();
         }
 
-        public SwiftTagListBlock(SwiftTagListBlock swiftTags) : base()
+        public SwiftTagList(SwiftTagList swiftTags) : base()
         {
             Tags.AddRange(swiftTags);
         }
@@ -28,6 +28,16 @@ namespace Swift.Net
         public void Add(SwiftTag item)
         {
             Tags.Add(item);
+        }
+
+        public void AddRange(SwiftTagList swiftTags)
+        {
+            Tags.AddRange(swiftTags);
+        }
+
+        public void AddRange(List<SwiftTag> swiftTags)
+        {
+            Tags.AddRange(swiftTags);
         }
 
         public void Clear()
@@ -79,7 +89,7 @@ namespace Swift.Net
         {
             if (obj == null) { return false; }
             if (ReferenceEquals(this, obj)) { return true; }
-            return obj is SwiftTagListBlock block &&
+            return obj is SwiftTagList block &&
                 Enumerable.SequenceEqual<SwiftTag>(Tags, block.Tags);
         }
 
@@ -88,7 +98,39 @@ namespace Swift.Net
             return 444497600 + EqualityComparer<List<SwiftTag>>.Default.GetHashCode(Tags);
         }
 
-        protected void SetBlockTags(string blockText)
+        public List<SwiftTagList> GetSubBlocks(SwiftTag startTag, SwiftTag endTag)
+        {
+            List<SwiftTagList> result = new List<SwiftTagList>();
+
+            SwiftTagList newTagListBlock = null;
+            foreach (var tag in Tags)
+            {
+                if (tag == startTag)
+                {
+                    newTagListBlock = new SwiftTagList();
+                    newTagListBlock.Add(tag);
+                }
+                else if (newTagListBlock != null)
+                {
+                    newTagListBlock.Add(tag);
+                    if (tag == endTag)
+                    {
+                        result.Add(newTagListBlock);
+                        newTagListBlock = null;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public SwiftTagList GetSubBlock(SwiftTag startTag, SwiftTag endTag)
+        {
+            var subBlocks = GetSubBlocks(startTag, endTag);
+            return subBlocks?.FirstOrDefault() ?? new SwiftTagList();
+        }
+
+        protected void SetBlockTags(string blockText, int BlockIdentifier)
         {
             int i = 0;
             if (blockText.StartsWith(BlockIdentifier + ":"))
@@ -112,7 +154,7 @@ namespace Swift.Net
             }
         }
 
-        protected void SetBlockText(string blockText)
+        protected void SetBlockText(string blockText, int BlockIdentifier)
         {
             if (!IsBlockTextEnd(blockText, blockText.Length - 1))
                 throw new SwiftParserException($"The block {BlockIdentifier} must end with -}}");

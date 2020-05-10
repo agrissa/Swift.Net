@@ -13,8 +13,8 @@ namespace Swift.Net
         public string SessionNumber { get; set; }
         public string SequenceNumber { get; set; }
 
-        public override string BlockName => "Basic header";
-        public override int BlockIdentifier => 1;
+        public string BlockName => "Basic header";
+        public int BlockIdentifier => 1;
 
         public SwiftBlock1()
         {
@@ -25,7 +25,7 @@ namespace Swift.Net
             SetValue(blockText);
         }
 
-        public override string GetValue()
+        public string GetValue()
         {
             StringBuilder result = new StringBuilder();
 
@@ -53,7 +53,7 @@ namespace Swift.Net
             return result.ToString();
         }
 
-        public override void SetValue(string blockText)
+        public void SetValue(string blockText)
         {
             if (blockText == null)
                 throw new ArgumentNullException("blockText");
