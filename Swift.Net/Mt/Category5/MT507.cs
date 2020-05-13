@@ -13,15 +13,15 @@ namespace Swift.Net.Mt.Category5
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    
-    
+
+
     /// <summary>
     /// MT507 (SRG 2019)
     /// <summary>
     public partial class MT507 : SwiftMessage
     {
-        
-		public override SwiftBlock4 Block4 { get => new SwiftBlock4(GetBlock4Tags()); set => SetBlock4Tags(value); }
+
+        public override SwiftBlock4 Block4 { get => new SwiftBlock4(GetBlock4Tags()); set => SetBlock4Tags(value); }
 
         /// <summary>
         /// General Information
@@ -35,62 +35,62 @@ namespace Swift.Net.Mt.Category5
         /// Additional Information
         /// <summary>
 		public MT507_SequenceC SequenceC { get; set; }
-        
+
         public MT507()
         {
         }
-        
+
         public MT507(SwiftTagList tags)
         {
-			SetBlock4Tags(tags);
+            SetBlock4Tags(tags);
         }
-        
+
         public virtual SwiftTagList GetBlock4Tags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (SequenceA != null)
-				tags.AddRange(SequenceA.GetTags());
-			if (SequenceBList != null)
-				tags.AddRange(SequenceBList.SelectMany(x => x.GetTags()).ToList());
-			if (SequenceC != null)
-				tags.AddRange(SequenceC.GetTags());
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (SequenceA != null)
+                tags.AddRange(SequenceA.GetTags());
+            if (SequenceBList != null)
+                tags.AddRange(SequenceBList.SelectMany(x => x.GetTags()).ToList());
+            if (SequenceC != null)
+                tags.AddRange(SequenceC.GetTags());
+            return tags;
         }
-        
+
         public virtual void SetBlock4Tags(SwiftTagList tags)
         {
-			SequenceA = MT507_SequenceA.GetMT507_SequenceA(tags);
-			SequenceBList = MT507_SequenceB.GetMT507_SequenceBList(tags);
-			SequenceC = MT507_SequenceC.GetMT507_SequenceC(tags);
+            SequenceA = MT507_SequenceA.GetMT507_SequenceA(tags);
+            SequenceBList = MT507_SequenceB.GetMT507_SequenceBList(tags);
+            SequenceC = MT507_SequenceC.GetMT507_SequenceC(tags);
         }
-        
+
         public static MT507 Parse(string message)
         {
-			SwiftMessage swiftMessage = new SwiftParser().GetSwiftMessage(message);
-			MT507 result = new MT507()
-			{
-				Block1 = swiftMessage.Block1,
-				Block2 = swiftMessage.Block2,
-				Block3 = swiftMessage.Block3,
-				Block4 = swiftMessage.Block4,
-				Block5 = swiftMessage.Block5,
-			};
-			return result;
+            SwiftMessage swiftMessage = new SwiftParser().GetSwiftMessage(message);
+            MT507 result = new MT507()
+            {
+                Block1 = swiftMessage.Block1,
+                Block2 = swiftMessage.Block2,
+                Block3 = swiftMessage.Block3,
+                Block4 = swiftMessage.Block4,
+                Block5 = swiftMessage.Block5,
+            };
+            return result;
         }
-        
+
         public static string Write(MT507 message)
         {
-			return new SwiftWriter().GetFinMessage(message);
+            return new SwiftWriter().GetFinMessage(message);
         }
     }
-    
+
     /// <summary>
     /// General Information
     /// <summary>
     public partial class MT507_SequenceA
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "GENL";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "GENL";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -159,179 +159,179 @@ namespace Swift.Net.Mt.Category5
         /// Linkages
         /// <summary>
 		public List<MT507_SequenceA2> SequenceA2List { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "GENL";
+        public static readonly string Tag16S_EndOfBlock_Value = "GENL";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceA()
         {
         }
-        
+
         public MT507_SequenceA(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag20C_Reference != null)
-				tags.AddRange(Tag20C_Reference.Select(x => new SwiftTag("20C", x)).ToList());
-			if (Tag23G_FunctionOfTheMessage != null)
-				tags.Add(new SwiftTag("23G", Tag23G_FunctionOfTheMessage));
-			if (SequenceA1List != null)
-				tags.AddRange(SequenceA1List.SelectMany(x => x.GetTags()).ToList());
-			if (Tag98A_Date != null)
-				tags.Add(new SwiftTag("98A", Tag98A_Date));
-			if (Tag98C_DateTime != null)
-				tags.Add(new SwiftTag("98C", Tag98C_DateTime));
-			if (Tag98E_DateTime != null)
-				tags.Add(new SwiftTag("98E", Tag98E_DateTime));
-			if (Tag22F_Indicator != null)
-				tags.Add(new SwiftTag("22F", Tag22F_Indicator));
-			if (Tag22H_Indicator != null)
-				tags.Add(new SwiftTag("22H", Tag22H_Indicator));
-			if (Tag95P_Party != null)
-				tags.AddRange(Tag95P_Party.Select(x => new SwiftTag("95P", x)).ToList());
-			if (Tag95Q_Party != null)
-				tags.AddRange(Tag95Q_Party.Select(x => new SwiftTag("95Q", x)).ToList());
-			if (Tag95R_Party != null)
-				tags.AddRange(Tag95R_Party.Select(x => new SwiftTag("95R", x)).ToList());
-			if (Tag25D_Status != null)
-				tags.Add(new SwiftTag("25D", Tag25D_Status));
-			if (Tag24B_Reason != null)
-				tags.Add(new SwiftTag("24B", Tag24B_Reason));
-			if (Tag70C_Narrative != null)
-				tags.AddRange(Tag70C_Narrative.Select(x => new SwiftTag("70C", x)).ToList());
-			if (Tag70D_Narrative != null)
-				tags.AddRange(Tag70D_Narrative.Select(x => new SwiftTag("70D", x)).ToList());
-			if (SequenceA2List != null)
-				tags.AddRange(SequenceA2List.SelectMany(x => x.GetTags()).ToList());
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag20C_Reference != null)
+                tags.AddRange(Tag20C_Reference.Select(x => new SwiftTag("20C", x)).ToList());
+            if (Tag23G_FunctionOfTheMessage != null)
+                tags.Add(new SwiftTag("23G", Tag23G_FunctionOfTheMessage));
+            if (SequenceA1List != null)
+                tags.AddRange(SequenceA1List.SelectMany(x => x.GetTags()).ToList());
+            if (Tag98A_Date != null)
+                tags.Add(new SwiftTag("98A", Tag98A_Date));
+            if (Tag98C_DateTime != null)
+                tags.Add(new SwiftTag("98C", Tag98C_DateTime));
+            if (Tag98E_DateTime != null)
+                tags.Add(new SwiftTag("98E", Tag98E_DateTime));
+            if (Tag22F_Indicator != null)
+                tags.Add(new SwiftTag("22F", Tag22F_Indicator));
+            if (Tag22H_Indicator != null)
+                tags.Add(new SwiftTag("22H", Tag22H_Indicator));
+            if (Tag95P_Party != null)
+                tags.AddRange(Tag95P_Party.Select(x => new SwiftTag("95P", x)).ToList());
+            if (Tag95Q_Party != null)
+                tags.AddRange(Tag95Q_Party.Select(x => new SwiftTag("95Q", x)).ToList());
+            if (Tag95R_Party != null)
+                tags.AddRange(Tag95R_Party.Select(x => new SwiftTag("95R", x)).ToList());
+            if (Tag25D_Status != null)
+                tags.Add(new SwiftTag("25D", Tag25D_Status));
+            if (Tag24B_Reason != null)
+                tags.Add(new SwiftTag("24B", Tag24B_Reason));
+            if (Tag70C_Narrative != null)
+                tags.AddRange(Tag70C_Narrative.Select(x => new SwiftTag("70C", x)).ToList());
+            if (Tag70D_Narrative != null)
+                tags.AddRange(Tag70D_Narrative.Select(x => new SwiftTag("70D", x)).ToList());
+            if (SequenceA2List != null)
+                tags.AddRange(SequenceA2List.SelectMany(x => x.GetTags()).ToList());
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "20C") && (i <= 2))
-				{
-					if (Tag20C_Reference == null)
-						Tag20C_Reference = new List<string>();
-					Tag20C_Reference.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "23G") && (i <= 3))
-				{
-					Tag23G_FunctionOfTheMessage = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "98A") && (i <= 4))
-				{
-					Tag98A_Date = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "98C") && (i <= 4))
-				{
-					Tag98C_DateTime = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "98E") && (i <= 4))
-				{
-					Tag98E_DateTime = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "22F") && (i <= 5))
-				{
-					Tag22F_Indicator = tag.Value;
-					i = 5;
-				}
-				else if ((tag.Name == "22H") && (i <= 5))
-				{
-					Tag22H_Indicator = tag.Value;
-					i = 5;
-				}
-				else if ((tag.Name == "95P") && (i <= 6))
-				{
-					if (Tag95P_Party == null)
-						Tag95P_Party = new List<string>();
-					Tag95P_Party.Add(tag.Value);
-					i = 6;
-				}
-				else if ((tag.Name == "95Q") && (i <= 6))
-				{
-					if (Tag95Q_Party == null)
-						Tag95Q_Party = new List<string>();
-					Tag95Q_Party.Add(tag.Value);
-					i = 6;
-				}
-				else if ((tag.Name == "95R") && (i <= 6))
-				{
-					if (Tag95R_Party == null)
-						Tag95R_Party = new List<string>();
-					Tag95R_Party.Add(tag.Value);
-					i = 6;
-				}
-				else if ((tag.Name == "25D") && (i <= 7))
-				{
-					Tag25D_Status = tag.Value;
-					i = 7;
-				}
-				else if ((tag.Name == "24B") && (i <= 8))
-				{
-					Tag24B_Reason = tag.Value;
-					i = 8;
-				}
-				else if ((tag.Name == "70C") && (i <= 9))
-				{
-					if (Tag70C_Narrative == null)
-						Tag70C_Narrative = new List<string>();
-					Tag70C_Narrative.Add(tag.Value);
-					i = 9;
-				}
-				else if ((tag.Name == "70D") && (i <= 9))
-				{
-					if (Tag70D_Narrative == null)
-						Tag70D_Narrative = new List<string>();
-					Tag70D_Narrative.Add(tag.Value);
-					i = 9;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 10))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 10;
-				}
-			}
-			SequenceA1List = MT507_SequenceA1.GetMT507_SequenceA1List(tags);
-			SequenceA2List = MT507_SequenceA2.GetMT507_SequenceA2List(tags);
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "20C") && (i <= 2))
+                {
+                    if (Tag20C_Reference == null)
+                        Tag20C_Reference = new List<string>();
+                    Tag20C_Reference.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "23G") && (i <= 3))
+                {
+                    Tag23G_FunctionOfTheMessage = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "98A") && (i <= 4))
+                {
+                    Tag98A_Date = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "98C") && (i <= 4))
+                {
+                    Tag98C_DateTime = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "98E") && (i <= 4))
+                {
+                    Tag98E_DateTime = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "22F") && (i <= 5))
+                {
+                    Tag22F_Indicator = tag.Value;
+                    i = 5;
+                }
+                else if ((tag.Name == "22H") && (i <= 5))
+                {
+                    Tag22H_Indicator = tag.Value;
+                    i = 5;
+                }
+                else if ((tag.Name == "95P") && (i <= 6))
+                {
+                    if (Tag95P_Party == null)
+                        Tag95P_Party = new List<string>();
+                    Tag95P_Party.Add(tag.Value);
+                    i = 6;
+                }
+                else if ((tag.Name == "95Q") && (i <= 6))
+                {
+                    if (Tag95Q_Party == null)
+                        Tag95Q_Party = new List<string>();
+                    Tag95Q_Party.Add(tag.Value);
+                    i = 6;
+                }
+                else if ((tag.Name == "95R") && (i <= 6))
+                {
+                    if (Tag95R_Party == null)
+                        Tag95R_Party = new List<string>();
+                    Tag95R_Party.Add(tag.Value);
+                    i = 6;
+                }
+                else if ((tag.Name == "25D") && (i <= 7))
+                {
+                    Tag25D_Status = tag.Value;
+                    i = 7;
+                }
+                else if ((tag.Name == "24B") && (i <= 8))
+                {
+                    Tag24B_Reason = tag.Value;
+                    i = 8;
+                }
+                else if ((tag.Name == "70C") && (i <= 9))
+                {
+                    if (Tag70C_Narrative == null)
+                        Tag70C_Narrative = new List<string>();
+                    Tag70C_Narrative.Add(tag.Value);
+                    i = 9;
+                }
+                else if ((tag.Name == "70D") && (i <= 9))
+                {
+                    if (Tag70D_Narrative == null)
+                        Tag70D_Narrative = new List<string>();
+                    Tag70D_Narrative.Add(tag.Value);
+                    i = 9;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 10))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 10;
+                }
+            }
+            SequenceA1List = MT507_SequenceA1.GetMT507_SequenceA1List(tags);
+            SequenceA2List = MT507_SequenceA2.GetMT507_SequenceA2List(tags);
         }
-        
+
         public static MT507_SequenceA GetMT507_SequenceA(SwiftTagList tags)
         {
-			SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceA.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA.Tag16S_EndOfBlock_Value));
-			return new MT507_SequenceA(subBlock);
+            SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceA.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA.Tag16S_EndOfBlock_Value));
+            return new MT507_SequenceA(subBlock);
         }
     }
-    
+
     /// <summary>
     /// Agreement
     /// <summary>
     public partial class MT507_SequenceA1
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "AGRE";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "AGRE";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -352,99 +352,99 @@ namespace Swift.Net.Mt.Category5
         /// Agreement Narrative
         /// <summary>
 		public string Tag70C_Narrative { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "AGRE";
+        public static readonly string Tag16S_EndOfBlock_Value = "AGRE";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceA1()
         {
         }
-        
+
         public MT507_SequenceA1(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag22F_Indicator != null)
-				tags.Add(new SwiftTag("22F", Tag22F_Indicator));
-			if (Tag98A_Date != null)
-				tags.Add(new SwiftTag("98A", Tag98A_Date));
-			if (Tag13B_Number != null)
-				tags.Add(new SwiftTag("13B", Tag13B_Number));
-			if (Tag70C_Narrative != null)
-				tags.Add(new SwiftTag("70C", Tag70C_Narrative));
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag22F_Indicator != null)
+                tags.Add(new SwiftTag("22F", Tag22F_Indicator));
+            if (Tag98A_Date != null)
+                tags.Add(new SwiftTag("98A", Tag98A_Date));
+            if (Tag13B_Number != null)
+                tags.Add(new SwiftTag("13B", Tag13B_Number));
+            if (Tag70C_Narrative != null)
+                tags.Add(new SwiftTag("70C", Tag70C_Narrative));
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "22F") && (i <= 2))
-				{
-					Tag22F_Indicator = tag.Value;
-					i = 2;
-				}
-				else if ((tag.Name == "98A") && (i <= 3))
-				{
-					Tag98A_Date = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "13B") && (i <= 4))
-				{
-					Tag13B_Number = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "70C") && (i <= 5))
-				{
-					Tag70C_Narrative = tag.Value;
-					i = 5;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 6))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 6;
-				}
-			}
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "22F") && (i <= 2))
+                {
+                    Tag22F_Indicator = tag.Value;
+                    i = 2;
+                }
+                else if ((tag.Name == "98A") && (i <= 3))
+                {
+                    Tag98A_Date = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "13B") && (i <= 4))
+                {
+                    Tag13B_Number = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "70C") && (i <= 5))
+                {
+                    Tag70C_Narrative = tag.Value;
+                    i = 5;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 6))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 6;
+                }
+            }
         }
-        
+
         public static List<MT507_SequenceA1> GetMT507_SequenceA1List(SwiftTagList tags)
         {
-			List<MT507_SequenceA1> result = new List<MT507_SequenceA1>();
-			List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceA1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA1.Tag16S_EndOfBlock_Value));
-			foreach(var subBlock in subBlocks)
-			{
-				var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceA1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA1.Tag16S_EndOfBlock_Value));
-				if (subTags.Count == 0) continue;
-				MT507_SequenceA1 sequence = new MT507_SequenceA1(subTags);
-				result.Add(sequence);
-			}
-			return result;
+            List<MT507_SequenceA1> result = new List<MT507_SequenceA1>();
+            List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceA1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA1.Tag16S_EndOfBlock_Value));
+            foreach (var subBlock in subBlocks)
+            {
+                var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceA1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA1.Tag16S_EndOfBlock_Value));
+                if (subTags.Count == 0) continue;
+                MT507_SequenceA1 sequence = new MT507_SequenceA1(subTags);
+                result.Add(sequence);
+            }
+            return result;
         }
     }
-    
+
     /// <summary>
     /// Linkages
     /// <summary>
     public partial class MT507_SequenceA2
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "LINK";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "LINK";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -461,92 +461,92 @@ namespace Swift.Net.Mt.Category5
         /// Reference
         /// <summary>
 		public string Tag20C_Reference { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "LINK";
+        public static readonly string Tag16S_EndOfBlock_Value = "LINK";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceA2()
         {
         }
-        
+
         public MT507_SequenceA2(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag13A_NumberIdentification != null)
-				tags.Add(new SwiftTag("13A", Tag13A_NumberIdentification));
-			if (Tag13B_NumberIdentification != null)
-				tags.Add(new SwiftTag("13B", Tag13B_NumberIdentification));
-			if (Tag20C_Reference != null)
-				tags.Add(new SwiftTag("20C", Tag20C_Reference));
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag13A_NumberIdentification != null)
+                tags.Add(new SwiftTag("13A", Tag13A_NumberIdentification));
+            if (Tag13B_NumberIdentification != null)
+                tags.Add(new SwiftTag("13B", Tag13B_NumberIdentification));
+            if (Tag20C_Reference != null)
+                tags.Add(new SwiftTag("20C", Tag20C_Reference));
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "13A") && (i <= 2))
-				{
-					Tag13A_NumberIdentification = tag.Value;
-					i = 2;
-				}
-				else if ((tag.Name == "13B") && (i <= 2))
-				{
-					Tag13B_NumberIdentification = tag.Value;
-					i = 2;
-				}
-				else if ((tag.Name == "20C") && (i <= 3))
-				{
-					Tag20C_Reference = tag.Value;
-					i = 3;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 4))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 4;
-				}
-			}
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "13A") && (i <= 2))
+                {
+                    Tag13A_NumberIdentification = tag.Value;
+                    i = 2;
+                }
+                else if ((tag.Name == "13B") && (i <= 2))
+                {
+                    Tag13B_NumberIdentification = tag.Value;
+                    i = 2;
+                }
+                else if ((tag.Name == "20C") && (i <= 3))
+                {
+                    Tag20C_Reference = tag.Value;
+                    i = 3;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 4))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 4;
+                }
+            }
         }
-        
+
         public static List<MT507_SequenceA2> GetMT507_SequenceA2List(SwiftTagList tags)
         {
-			List<MT507_SequenceA2> result = new List<MT507_SequenceA2>();
-			List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceA2.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA2.Tag16S_EndOfBlock_Value));
-			foreach(var subBlock in subBlocks)
-			{
-				var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceA2.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA2.Tag16S_EndOfBlock_Value));
-				if (subTags.Count == 0) continue;
-				MT507_SequenceA2 sequence = new MT507_SequenceA2(subTags);
-				result.Add(sequence);
-			}
-			return result;
+            List<MT507_SequenceA2> result = new List<MT507_SequenceA2>();
+            List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceA2.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA2.Tag16S_EndOfBlock_Value));
+            foreach (var subBlock in subBlocks)
+            {
+                var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceA2.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceA2.Tag16S_EndOfBlock_Value));
+                if (subTags.Count == 0) continue;
+                MT507_SequenceA2 sequence = new MT507_SequenceA2(subTags);
+                result.Add(sequence);
+            }
+            return result;
         }
     }
-    
+
     /// <summary>
     /// Collateral Details
     /// <summary>
     public partial class MT507_SequenceB
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "COLD";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "COLD";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -575,109 +575,109 @@ namespace Swift.Net.Mt.Category5
         /// General Settlement Details
         /// <summary>
 		public MT507_SequenceB1 SequenceB1 { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "COLD";
+        public static readonly string Tag16S_EndOfBlock_Value = "COLD";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceB()
         {
         }
-        
+
         public MT507_SequenceB(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag20C_Reference != null)
-				tags.Add(new SwiftTag("20C", Tag20C_Reference));
-			if (Tag22H_Indicator != null)
-				tags.Add(new SwiftTag("22H", Tag22H_Indicator));
-			if (Tag25D_Status != null)
-				tags.Add(new SwiftTag("25D", Tag25D_Status));
-			if (Tag24B_Reason != null)
-				tags.Add(new SwiftTag("24B", Tag24B_Reason));
-			if (Tag70D_Narrative != null)
-				tags.Add(new SwiftTag("70D", Tag70D_Narrative));
-			if (SequenceB1 != null)
-				tags.AddRange(SequenceB1.GetTags());
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag20C_Reference != null)
+                tags.Add(new SwiftTag("20C", Tag20C_Reference));
+            if (Tag22H_Indicator != null)
+                tags.Add(new SwiftTag("22H", Tag22H_Indicator));
+            if (Tag25D_Status != null)
+                tags.Add(new SwiftTag("25D", Tag25D_Status));
+            if (Tag24B_Reason != null)
+                tags.Add(new SwiftTag("24B", Tag24B_Reason));
+            if (Tag70D_Narrative != null)
+                tags.Add(new SwiftTag("70D", Tag70D_Narrative));
+            if (SequenceB1 != null)
+                tags.AddRange(SequenceB1.GetTags());
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "20C") && (i <= 2))
-				{
-					Tag20C_Reference = tag.Value;
-					i = 2;
-				}
-				else if ((tag.Name == "22H") && (i <= 3))
-				{
-					Tag22H_Indicator = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "25D") && (i <= 4))
-				{
-					Tag25D_Status = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "24B") && (i <= 5))
-				{
-					Tag24B_Reason = tag.Value;
-					i = 5;
-				}
-				else if ((tag.Name == "70D") && (i <= 6))
-				{
-					Tag70D_Narrative = tag.Value;
-					i = 6;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 7))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 7;
-				}
-			}
-			SequenceB1 = MT507_SequenceB1.GetMT507_SequenceB1(tags);
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "20C") && (i <= 2))
+                {
+                    Tag20C_Reference = tag.Value;
+                    i = 2;
+                }
+                else if ((tag.Name == "22H") && (i <= 3))
+                {
+                    Tag22H_Indicator = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "25D") && (i <= 4))
+                {
+                    Tag25D_Status = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "24B") && (i <= 5))
+                {
+                    Tag24B_Reason = tag.Value;
+                    i = 5;
+                }
+                else if ((tag.Name == "70D") && (i <= 6))
+                {
+                    Tag70D_Narrative = tag.Value;
+                    i = 6;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 7))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 7;
+                }
+            }
+            SequenceB1 = MT507_SequenceB1.GetMT507_SequenceB1(tags);
         }
-        
+
         public static List<MT507_SequenceB> GetMT507_SequenceBList(SwiftTagList tags)
         {
-			List<MT507_SequenceB> result = new List<MT507_SequenceB>();
-			List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceB.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB.Tag16S_EndOfBlock_Value));
-			foreach(var subBlock in subBlocks)
-			{
-				var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceB.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB.Tag16S_EndOfBlock_Value));
-				if (subTags.Count == 0) continue;
-				MT507_SequenceB sequence = new MT507_SequenceB(subTags);
-				result.Add(sequence);
-			}
-			return result;
+            List<MT507_SequenceB> result = new List<MT507_SequenceB>();
+            List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceB.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB.Tag16S_EndOfBlock_Value));
+            foreach (var subBlock in subBlocks)
+            {
+                var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceB.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB.Tag16S_EndOfBlock_Value));
+                if (subTags.Count == 0) continue;
+                MT507_SequenceB sequence = new MT507_SequenceB(subTags);
+                result.Add(sequence);
+            }
+            return result;
         }
     }
-    
+
     /// <summary>
     /// General Settlement Details
     /// <summary>
     public partial class MT507_SequenceB1
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "SETTL";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "SETTL";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -690,69 +690,69 @@ namespace Swift.Net.Mt.Category5
         /// Cash Settlement Details
         /// <summary>
 		public MT507_SequenceB1b SequenceB1b { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "SETTL";
+        public static readonly string Tag16S_EndOfBlock_Value = "SETTL";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceB1()
         {
         }
-        
+
         public MT507_SequenceB1(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (SequenceB1a != null)
-				tags.AddRange(SequenceB1a.GetTags());
-			if (SequenceB1b != null)
-				tags.AddRange(SequenceB1b.GetTags());
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (SequenceB1a != null)
+                tags.AddRange(SequenceB1a.GetTags());
+            if (SequenceB1b != null)
+                tags.AddRange(SequenceB1b.GetTags());
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 2))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 2;
-				}
-			}
-			SequenceB1a = MT507_SequenceB1a.GetMT507_SequenceB1a(tags);
-			SequenceB1b = MT507_SequenceB1b.GetMT507_SequenceB1b(tags);
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 2))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 2;
+                }
+            }
+            SequenceB1a = MT507_SequenceB1a.GetMT507_SequenceB1a(tags);
+            SequenceB1b = MT507_SequenceB1b.GetMT507_SequenceB1b(tags);
         }
-        
+
         public static MT507_SequenceB1 GetMT507_SequenceB1(SwiftTagList tags)
         {
-			SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1.Tag16S_EndOfBlock_Value));
-			return new MT507_SequenceB1(subBlock);
+            SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1.Tag16S_EndOfBlock_Value));
+            return new MT507_SequenceB1(subBlock);
         }
     }
-    
+
     /// <summary>
     /// Settlement Details
     /// <summary>
     public partial class MT507_SequenceB1a
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "SETDET";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "SETDET";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -769,84 +769,84 @@ namespace Swift.Net.Mt.Category5
         /// Settlement Parties
         /// <summary>
 		public List<MT507_SequenceB1a1> SequenceB1a1List { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "SETDET";
+        public static readonly string Tag16S_EndOfBlock_Value = "SETDET";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceB1a()
         {
         }
-        
+
         public MT507_SequenceB1a(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag22H_Indicator != null)
-				tags.AddRange(Tag22H_Indicator.Select(x => new SwiftTag("22H", x)).ToList());
-			if (Tag22F_Indicator != null)
-				tags.AddRange(Tag22F_Indicator.Select(x => new SwiftTag("22F", x)).ToList());
-			if (SequenceB1a1List != null)
-				tags.AddRange(SequenceB1a1List.SelectMany(x => x.GetTags()).ToList());
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag22H_Indicator != null)
+                tags.AddRange(Tag22H_Indicator.Select(x => new SwiftTag("22H", x)).ToList());
+            if (Tag22F_Indicator != null)
+                tags.AddRange(Tag22F_Indicator.Select(x => new SwiftTag("22F", x)).ToList());
+            if (SequenceB1a1List != null)
+                tags.AddRange(SequenceB1a1List.SelectMany(x => x.GetTags()).ToList());
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "22H") && (i <= 2))
-				{
-					if (Tag22H_Indicator == null)
-						Tag22H_Indicator = new List<string>();
-					Tag22H_Indicator.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "22F") && (i <= 2))
-				{
-					if (Tag22F_Indicator == null)
-						Tag22F_Indicator = new List<string>();
-					Tag22F_Indicator.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 3))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 3;
-				}
-			}
-			SequenceB1a1List = MT507_SequenceB1a1.GetMT507_SequenceB1a1List(tags);
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "22H") && (i <= 2))
+                {
+                    if (Tag22H_Indicator == null)
+                        Tag22H_Indicator = new List<string>();
+                    Tag22H_Indicator.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "22F") && (i <= 2))
+                {
+                    if (Tag22F_Indicator == null)
+                        Tag22F_Indicator = new List<string>();
+                    Tag22F_Indicator.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 3))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 3;
+                }
+            }
+            SequenceB1a1List = MT507_SequenceB1a1.GetMT507_SequenceB1a1List(tags);
         }
-        
+
         public static MT507_SequenceB1a GetMT507_SequenceB1a(SwiftTagList tags)
         {
-			SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1a.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1a.Tag16S_EndOfBlock_Value));
-			return new MT507_SequenceB1a(subBlock);
+            SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1a.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1a.Tag16S_EndOfBlock_Value));
+            return new MT507_SequenceB1a(subBlock);
         }
     }
-    
+
     /// <summary>
     /// Settlement Parties
     /// <summary>
     public partial class MT507_SequenceB1a1
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "SETPRTY";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "SETPRTY";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -883,137 +883,137 @@ namespace Swift.Net.Mt.Category5
         /// Party Contact Narrative
         /// <summary>
 		public string Tag70C_Narrative { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "SETPRTY";
+        public static readonly string Tag16S_EndOfBlock_Value = "SETPRTY";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceB1a1()
         {
         }
-        
+
         public MT507_SequenceB1a1(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag95C_Party != null)
-				tags.AddRange(Tag95C_Party.Select(x => new SwiftTag("95C", x)).ToList());
-			if (Tag95P_Party != null)
-				tags.AddRange(Tag95P_Party.Select(x => new SwiftTag("95P", x)).ToList());
-			if (Tag95Q_Party != null)
-				tags.AddRange(Tag95Q_Party.Select(x => new SwiftTag("95Q", x)).ToList());
-			if (Tag95R_Party != null)
-				tags.AddRange(Tag95R_Party.Select(x => new SwiftTag("95R", x)).ToList());
-			if (Tag95S_Party != null)
-				tags.AddRange(Tag95S_Party.Select(x => new SwiftTag("95S", x)).ToList());
-			if (Tag97A_Account != null)
-				tags.Add(new SwiftTag("97A", Tag97A_Account));
-			if (Tag97B_Account != null)
-				tags.Add(new SwiftTag("97B", Tag97B_Account));
-			if (Tag70C_Narrative != null)
-				tags.Add(new SwiftTag("70C", Tag70C_Narrative));
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag95C_Party != null)
+                tags.AddRange(Tag95C_Party.Select(x => new SwiftTag("95C", x)).ToList());
+            if (Tag95P_Party != null)
+                tags.AddRange(Tag95P_Party.Select(x => new SwiftTag("95P", x)).ToList());
+            if (Tag95Q_Party != null)
+                tags.AddRange(Tag95Q_Party.Select(x => new SwiftTag("95Q", x)).ToList());
+            if (Tag95R_Party != null)
+                tags.AddRange(Tag95R_Party.Select(x => new SwiftTag("95R", x)).ToList());
+            if (Tag95S_Party != null)
+                tags.AddRange(Tag95S_Party.Select(x => new SwiftTag("95S", x)).ToList());
+            if (Tag97A_Account != null)
+                tags.Add(new SwiftTag("97A", Tag97A_Account));
+            if (Tag97B_Account != null)
+                tags.Add(new SwiftTag("97B", Tag97B_Account));
+            if (Tag70C_Narrative != null)
+                tags.Add(new SwiftTag("70C", Tag70C_Narrative));
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "95C") && (i <= 2))
-				{
-					if (Tag95C_Party == null)
-						Tag95C_Party = new List<string>();
-					Tag95C_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95P") && (i <= 2))
-				{
-					if (Tag95P_Party == null)
-						Tag95P_Party = new List<string>();
-					Tag95P_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95Q") && (i <= 2))
-				{
-					if (Tag95Q_Party == null)
-						Tag95Q_Party = new List<string>();
-					Tag95Q_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95R") && (i <= 2))
-				{
-					if (Tag95R_Party == null)
-						Tag95R_Party = new List<string>();
-					Tag95R_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95S") && (i <= 2))
-				{
-					if (Tag95S_Party == null)
-						Tag95S_Party = new List<string>();
-					Tag95S_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "97A") && (i <= 3))
-				{
-					Tag97A_Account = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "97B") && (i <= 3))
-				{
-					Tag97B_Account = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "70C") && (i <= 4))
-				{
-					Tag70C_Narrative = tag.Value;
-					i = 4;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 5))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 5;
-				}
-			}
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "95C") && (i <= 2))
+                {
+                    if (Tag95C_Party == null)
+                        Tag95C_Party = new List<string>();
+                    Tag95C_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95P") && (i <= 2))
+                {
+                    if (Tag95P_Party == null)
+                        Tag95P_Party = new List<string>();
+                    Tag95P_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95Q") && (i <= 2))
+                {
+                    if (Tag95Q_Party == null)
+                        Tag95Q_Party = new List<string>();
+                    Tag95Q_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95R") && (i <= 2))
+                {
+                    if (Tag95R_Party == null)
+                        Tag95R_Party = new List<string>();
+                    Tag95R_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95S") && (i <= 2))
+                {
+                    if (Tag95S_Party == null)
+                        Tag95S_Party = new List<string>();
+                    Tag95S_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "97A") && (i <= 3))
+                {
+                    Tag97A_Account = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "97B") && (i <= 3))
+                {
+                    Tag97B_Account = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "70C") && (i <= 4))
+                {
+                    Tag70C_Narrative = tag.Value;
+                    i = 4;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 5))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 5;
+                }
+            }
         }
-        
+
         public static List<MT507_SequenceB1a1> GetMT507_SequenceB1a1List(SwiftTagList tags)
         {
-			List<MT507_SequenceB1a1> result = new List<MT507_SequenceB1a1>();
-			List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceB1a1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1a1.Tag16S_EndOfBlock_Value));
-			foreach(var subBlock in subBlocks)
-			{
-				var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1a1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1a1.Tag16S_EndOfBlock_Value));
-				if (subTags.Count == 0) continue;
-				MT507_SequenceB1a1 sequence = new MT507_SequenceB1a1(subTags);
-				result.Add(sequence);
-			}
-			return result;
+            List<MT507_SequenceB1a1> result = new List<MT507_SequenceB1a1>();
+            List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceB1a1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1a1.Tag16S_EndOfBlock_Value));
+            foreach (var subBlock in subBlocks)
+            {
+                var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1a1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1a1.Tag16S_EndOfBlock_Value));
+                if (subTags.Count == 0) continue;
+                MT507_SequenceB1a1 sequence = new MT507_SequenceB1a1(subTags);
+                result.Add(sequence);
+            }
+            return result;
         }
     }
-    
+
     /// <summary>
     /// Cash Settlement Details
     /// <summary>
     public partial class MT507_SequenceB1b
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "CASHSET";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "CASHSET";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -1026,73 +1026,73 @@ namespace Swift.Net.Mt.Category5
         /// Cash Parties
         /// <summary>
 		public List<MT507_SequenceB1b1> SequenceB1b1List { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "CASHSET";
+        public static readonly string Tag16S_EndOfBlock_Value = "CASHSET";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceB1b()
         {
         }
-        
+
         public MT507_SequenceB1b(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag22F_Indicator != null)
-				tags.Add(new SwiftTag("22F", Tag22F_Indicator));
-			if (SequenceB1b1List != null)
-				tags.AddRange(SequenceB1b1List.SelectMany(x => x.GetTags()).ToList());
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag22F_Indicator != null)
+                tags.Add(new SwiftTag("22F", Tag22F_Indicator));
+            if (SequenceB1b1List != null)
+                tags.AddRange(SequenceB1b1List.SelectMany(x => x.GetTags()).ToList());
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "22F") && (i <= 2))
-				{
-					Tag22F_Indicator = tag.Value;
-					i = 2;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 3))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 3;
-				}
-			}
-			SequenceB1b1List = MT507_SequenceB1b1.GetMT507_SequenceB1b1List(tags);
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "22F") && (i <= 2))
+                {
+                    Tag22F_Indicator = tag.Value;
+                    i = 2;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 3))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 3;
+                }
+            }
+            SequenceB1b1List = MT507_SequenceB1b1.GetMT507_SequenceB1b1List(tags);
         }
-        
+
         public static MT507_SequenceB1b GetMT507_SequenceB1b(SwiftTagList tags)
         {
-			SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1b.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1b.Tag16S_EndOfBlock_Value));
-			return new MT507_SequenceB1b(subBlock);
+            SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1b.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1b.Tag16S_EndOfBlock_Value));
+            return new MT507_SequenceB1b(subBlock);
         }
     }
-    
+
     /// <summary>
     /// Cash Parties
     /// <summary>
     public partial class MT507_SequenceB1b1
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "CSHPRTY";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "CSHPRTY";
         /// <summary>
         /// Start Of Block
         /// <summary>
@@ -1125,132 +1125,132 @@ namespace Swift.Net.Mt.Category5
         /// Party Contact Narrative
         /// <summary>
 		public string Tag70C_Narrative { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "CSHPRTY";
+        public static readonly string Tag16S_EndOfBlock_Value = "CSHPRTY";
         /// <summary>
         /// End Of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceB1b1()
         {
         }
-        
+
         public MT507_SequenceB1b1(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag95P_Party != null)
-				tags.AddRange(Tag95P_Party.Select(x => new SwiftTag("95P", x)).ToList());
-			if (Tag95Q_Party != null)
-				tags.AddRange(Tag95Q_Party.Select(x => new SwiftTag("95Q", x)).ToList());
-			if (Tag95R_Party != null)
-				tags.AddRange(Tag95R_Party.Select(x => new SwiftTag("95R", x)).ToList());
-			if (Tag95S_Party != null)
-				tags.AddRange(Tag95S_Party.Select(x => new SwiftTag("95S", x)).ToList());
-			if (Tag97A_Account != null)
-				tags.AddRange(Tag97A_Account.Select(x => new SwiftTag("97A", x)).ToList());
-			if (Tag97E_Account != null)
-				tags.AddRange(Tag97E_Account.Select(x => new SwiftTag("97E", x)).ToList());
-			if (Tag70C_Narrative != null)
-				tags.Add(new SwiftTag("70C", Tag70C_Narrative));
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag95P_Party != null)
+                tags.AddRange(Tag95P_Party.Select(x => new SwiftTag("95P", x)).ToList());
+            if (Tag95Q_Party != null)
+                tags.AddRange(Tag95Q_Party.Select(x => new SwiftTag("95Q", x)).ToList());
+            if (Tag95R_Party != null)
+                tags.AddRange(Tag95R_Party.Select(x => new SwiftTag("95R", x)).ToList());
+            if (Tag95S_Party != null)
+                tags.AddRange(Tag95S_Party.Select(x => new SwiftTag("95S", x)).ToList());
+            if (Tag97A_Account != null)
+                tags.AddRange(Tag97A_Account.Select(x => new SwiftTag("97A", x)).ToList());
+            if (Tag97E_Account != null)
+                tags.AddRange(Tag97E_Account.Select(x => new SwiftTag("97E", x)).ToList());
+            if (Tag70C_Narrative != null)
+                tags.Add(new SwiftTag("70C", Tag70C_Narrative));
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "95P") && (i <= 2))
-				{
-					if (Tag95P_Party == null)
-						Tag95P_Party = new List<string>();
-					Tag95P_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95Q") && (i <= 2))
-				{
-					if (Tag95Q_Party == null)
-						Tag95Q_Party = new List<string>();
-					Tag95Q_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95R") && (i <= 2))
-				{
-					if (Tag95R_Party == null)
-						Tag95R_Party = new List<string>();
-					Tag95R_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95S") && (i <= 2))
-				{
-					if (Tag95S_Party == null)
-						Tag95S_Party = new List<string>();
-					Tag95S_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "97A") && (i <= 3))
-				{
-					if (Tag97A_Account == null)
-						Tag97A_Account = new List<string>();
-					Tag97A_Account.Add(tag.Value);
-					i = 3;
-				}
-				else if ((tag.Name == "97E") && (i <= 3))
-				{
-					if (Tag97E_Account == null)
-						Tag97E_Account = new List<string>();
-					Tag97E_Account.Add(tag.Value);
-					i = 3;
-				}
-				else if ((tag.Name == "70C") && (i <= 4))
-				{
-					Tag70C_Narrative = tag.Value;
-					i = 4;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 5))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 5;
-				}
-			}
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "95P") && (i <= 2))
+                {
+                    if (Tag95P_Party == null)
+                        Tag95P_Party = new List<string>();
+                    Tag95P_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95Q") && (i <= 2))
+                {
+                    if (Tag95Q_Party == null)
+                        Tag95Q_Party = new List<string>();
+                    Tag95Q_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95R") && (i <= 2))
+                {
+                    if (Tag95R_Party == null)
+                        Tag95R_Party = new List<string>();
+                    Tag95R_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95S") && (i <= 2))
+                {
+                    if (Tag95S_Party == null)
+                        Tag95S_Party = new List<string>();
+                    Tag95S_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "97A") && (i <= 3))
+                {
+                    if (Tag97A_Account == null)
+                        Tag97A_Account = new List<string>();
+                    Tag97A_Account.Add(tag.Value);
+                    i = 3;
+                }
+                else if ((tag.Name == "97E") && (i <= 3))
+                {
+                    if (Tag97E_Account == null)
+                        Tag97E_Account = new List<string>();
+                    Tag97E_Account.Add(tag.Value);
+                    i = 3;
+                }
+                else if ((tag.Name == "70C") && (i <= 4))
+                {
+                    Tag70C_Narrative = tag.Value;
+                    i = 4;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 5))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 5;
+                }
+            }
         }
-        
+
         public static List<MT507_SequenceB1b1> GetMT507_SequenceB1b1List(SwiftTagList tags)
         {
-			List<MT507_SequenceB1b1> result = new List<MT507_SequenceB1b1>();
-			List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceB1b1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1b1.Tag16S_EndOfBlock_Value));
-			foreach(var subBlock in subBlocks)
-			{
-				var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1b1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1b1.Tag16S_EndOfBlock_Value));
-				if (subTags.Count == 0) continue;
-				MT507_SequenceB1b1 sequence = new MT507_SequenceB1b1(subTags);
-				result.Add(sequence);
-			}
-			return result;
+            List<MT507_SequenceB1b1> result = new List<MT507_SequenceB1b1>();
+            List<SwiftTagList> subBlocks = tags.GetSubBlocks(new SwiftTag("16R", MT507_SequenceB1b1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1b1.Tag16S_EndOfBlock_Value));
+            foreach (var subBlock in subBlocks)
+            {
+                var subTags = subBlock.GetSubBlock(new SwiftTag("16R", MT507_SequenceB1b1.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceB1b1.Tag16S_EndOfBlock_Value));
+                if (subTags.Count == 0) continue;
+                MT507_SequenceB1b1 sequence = new MT507_SequenceB1b1(subTags);
+                result.Add(sequence);
+            }
+            return result;
         }
     }
-    
+
     /// <summary>
     /// Additional Information
     /// <summary>
     public partial class MT507_SequenceC
     {
-        
-		public static readonly string Tag16R_StartOfBlock_Value = "ADDINFO";
+
+        public static readonly string Tag16R_StartOfBlock_Value = "ADDINFO";
         /// <summary>
         /// Start of Block
         /// <summary>
@@ -1267,80 +1267,80 @@ namespace Swift.Net.Mt.Category5
         /// Party
         /// <summary>
 		public List<string> Tag95Q_Party { get; set; }
-		public static readonly string Tag16S_EndOfBlock_Value = "ADDINFO";
+        public static readonly string Tag16S_EndOfBlock_Value = "ADDINFO";
         /// <summary>
         /// End of Block
         /// <summary>
 		public string Tag16S_EndOfBlock { get; set; }
-        
+
         public MT507_SequenceC()
         {
         }
-        
+
         public MT507_SequenceC(SwiftTagList tags)
         {
-			SetTags(tags);
+            SetTags(tags);
         }
-        
+
         public virtual SwiftTagList GetTags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag16R_StartOfBlock != null)
-				tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
-			if (Tag95P_Party != null)
-				tags.AddRange(Tag95P_Party.Select(x => new SwiftTag("95P", x)).ToList());
-			if (Tag95R_Party != null)
-				tags.AddRange(Tag95R_Party.Select(x => new SwiftTag("95R", x)).ToList());
-			if (Tag95Q_Party != null)
-				tags.AddRange(Tag95Q_Party.Select(x => new SwiftTag("95Q", x)).ToList());
-			if (Tag16S_EndOfBlock != null)
-				tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag16R_StartOfBlock != null)
+                tags.Add(new SwiftTag("16R", Tag16R_StartOfBlock));
+            if (Tag95P_Party != null)
+                tags.AddRange(Tag95P_Party.Select(x => new SwiftTag("95P", x)).ToList());
+            if (Tag95R_Party != null)
+                tags.AddRange(Tag95R_Party.Select(x => new SwiftTag("95R", x)).ToList());
+            if (Tag95Q_Party != null)
+                tags.AddRange(Tag95Q_Party.Select(x => new SwiftTag("95Q", x)).ToList());
+            if (Tag16S_EndOfBlock != null)
+                tags.Add(new SwiftTag("16S", Tag16S_EndOfBlock));
+            return tags;
         }
-        
+
         public virtual void SetTags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
-				{
-					Tag16R_StartOfBlock = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "95P") && (i <= 2))
-				{
-					if (Tag95P_Party == null)
-						Tag95P_Party = new List<string>();
-					Tag95P_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95R") && (i <= 2))
-				{
-					if (Tag95R_Party == null)
-						Tag95R_Party = new List<string>();
-					Tag95R_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag.Name == "95Q") && (i <= 2))
-				{
-					if (Tag95Q_Party == null)
-						Tag95Q_Party = new List<string>();
-					Tag95Q_Party.Add(tag.Value);
-					i = 2;
-				}
-				else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 3))
-				{
-					Tag16S_EndOfBlock = tag.Value;
-					i = 3;
-				}
-			}
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag == new SwiftTag("16R", Tag16R_StartOfBlock_Value)) && (i <= 1))
+                {
+                    Tag16R_StartOfBlock = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "95P") && (i <= 2))
+                {
+                    if (Tag95P_Party == null)
+                        Tag95P_Party = new List<string>();
+                    Tag95P_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95R") && (i <= 2))
+                {
+                    if (Tag95R_Party == null)
+                        Tag95R_Party = new List<string>();
+                    Tag95R_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag.Name == "95Q") && (i <= 2))
+                {
+                    if (Tag95Q_Party == null)
+                        Tag95Q_Party = new List<string>();
+                    Tag95Q_Party.Add(tag.Value);
+                    i = 2;
+                }
+                else if ((tag == new SwiftTag("16S", Tag16S_EndOfBlock_Value)) && (i <= 3))
+                {
+                    Tag16S_EndOfBlock = tag.Value;
+                    i = 3;
+                }
+            }
         }
-        
+
         public static MT507_SequenceC GetMT507_SequenceC(SwiftTagList tags)
         {
-			SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceC.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceC.Tag16S_EndOfBlock_Value));
-			return new MT507_SequenceC(subBlock);
+            SwiftTagList subBlock = tags.GetSubBlock(new SwiftTag("16R", MT507_SequenceC.Tag16R_StartOfBlock_Value), new SwiftTag("16S", MT507_SequenceC.Tag16S_EndOfBlock_Value));
+            return new MT507_SequenceC(subBlock);
         }
     }
 }

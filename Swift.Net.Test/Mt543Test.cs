@@ -1,9 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Swift.Net.Mt.Category5;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Swift.Net.Test
 {

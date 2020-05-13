@@ -13,15 +13,15 @@ namespace Swift.Net.Mt.Category5
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    
-    
+
+
     /// <summary>
     /// MT559 (SRG 2019)
     /// <summary>
     public partial class MT559 : SwiftMessage
     {
-        
-		public override SwiftBlock4 Block4 { get => new SwiftBlock4(GetBlock4Tags()); set => SetBlock4Tags(value); }
+
+        public override SwiftBlock4 Block4 { get => new SwiftBlock4(GetBlock4Tags()); set => SetBlock4Tags(value); }
 
         /// <summary>
         /// Sum Of Net Proceeds
@@ -59,110 +59,110 @@ namespace Swift.Net.Mt.Category5
         /// Sender to Receiver Information
         /// <summary>
 		public string Tag72_SenderToReceiverInformation { get; set; }
-        
+
         public MT559()
         {
         }
-        
+
         public MT559(SwiftTagList tags)
         {
-			SetBlock4Tags(tags);
+            SetBlock4Tags(tags);
         }
-        
+
         public virtual SwiftTagList GetBlock4Tags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag19_SumOfNetProceeds != null)
-				tags.Add(new SwiftTag("19", Tag19_SumOfNetProceeds));
-			if (Tag23_FurtherIdentification != null)
-				tags.Add(new SwiftTag("23", Tag23_FurtherIdentification));
-			if (Tag53A_AccountForPayment != null)
-				tags.Add(new SwiftTag("53A", Tag53A_AccountForPayment));
-			if (Tag53C_AccountForPayment != null)
-				tags.Add(new SwiftTag("53C", Tag53C_AccountForPayment));
-			if (Tag53D_AccountForPayment != null)
-				tags.Add(new SwiftTag("53D", Tag53D_AccountForPayment));
-			if (Tag57A_AccountWithInstitution != null)
-				tags.Add(new SwiftTag("57A", Tag57A_AccountWithInstitution));
-			if (Tag57B_AccountWithInstitution != null)
-				tags.Add(new SwiftTag("57B", Tag57B_AccountWithInstitution));
-			if (Tag57D_AccountWithInstitution != null)
-				tags.Add(new SwiftTag("57D", Tag57D_AccountWithInstitution));
-			if (Tag72_SenderToReceiverInformation != null)
-				tags.Add(new SwiftTag("72", Tag72_SenderToReceiverInformation));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag19_SumOfNetProceeds != null)
+                tags.Add(new SwiftTag("19", Tag19_SumOfNetProceeds));
+            if (Tag23_FurtherIdentification != null)
+                tags.Add(new SwiftTag("23", Tag23_FurtherIdentification));
+            if (Tag53A_AccountForPayment != null)
+                tags.Add(new SwiftTag("53A", Tag53A_AccountForPayment));
+            if (Tag53C_AccountForPayment != null)
+                tags.Add(new SwiftTag("53C", Tag53C_AccountForPayment));
+            if (Tag53D_AccountForPayment != null)
+                tags.Add(new SwiftTag("53D", Tag53D_AccountForPayment));
+            if (Tag57A_AccountWithInstitution != null)
+                tags.Add(new SwiftTag("57A", Tag57A_AccountWithInstitution));
+            if (Tag57B_AccountWithInstitution != null)
+                tags.Add(new SwiftTag("57B", Tag57B_AccountWithInstitution));
+            if (Tag57D_AccountWithInstitution != null)
+                tags.Add(new SwiftTag("57D", Tag57D_AccountWithInstitution));
+            if (Tag72_SenderToReceiverInformation != null)
+                tags.Add(new SwiftTag("72", Tag72_SenderToReceiverInformation));
+            return tags;
         }
-        
+
         public virtual void SetBlock4Tags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag.Name == "19") && (i <= 1))
-				{
-					Tag19_SumOfNetProceeds = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "23") && (i <= 2))
-				{
-					Tag23_FurtherIdentification = tag.Value;
-					i = 2;
-				}
-				else if ((tag.Name == "53A") && (i <= 3))
-				{
-					Tag53A_AccountForPayment = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "53C") && (i <= 3))
-				{
-					Tag53C_AccountForPayment = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "53D") && (i <= 3))
-				{
-					Tag53D_AccountForPayment = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "57A") && (i <= 4))
-				{
-					Tag57A_AccountWithInstitution = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "57B") && (i <= 4))
-				{
-					Tag57B_AccountWithInstitution = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "57D") && (i <= 4))
-				{
-					Tag57D_AccountWithInstitution = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "72") && (i <= 5))
-				{
-					Tag72_SenderToReceiverInformation = tag.Value;
-					i = 5;
-				}
-			}
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag.Name == "19") && (i <= 1))
+                {
+                    Tag19_SumOfNetProceeds = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "23") && (i <= 2))
+                {
+                    Tag23_FurtherIdentification = tag.Value;
+                    i = 2;
+                }
+                else if ((tag.Name == "53A") && (i <= 3))
+                {
+                    Tag53A_AccountForPayment = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "53C") && (i <= 3))
+                {
+                    Tag53C_AccountForPayment = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "53D") && (i <= 3))
+                {
+                    Tag53D_AccountForPayment = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "57A") && (i <= 4))
+                {
+                    Tag57A_AccountWithInstitution = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "57B") && (i <= 4))
+                {
+                    Tag57B_AccountWithInstitution = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "57D") && (i <= 4))
+                {
+                    Tag57D_AccountWithInstitution = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "72") && (i <= 5))
+                {
+                    Tag72_SenderToReceiverInformation = tag.Value;
+                    i = 5;
+                }
+            }
         }
-        
+
         public static MT559 Parse(string message)
         {
-			SwiftMessage swiftMessage = new SwiftParser().GetSwiftMessage(message);
-			MT559 result = new MT559()
-			{
-				Block1 = swiftMessage.Block1,
-				Block2 = swiftMessage.Block2,
-				Block3 = swiftMessage.Block3,
-				Block4 = swiftMessage.Block4,
-				Block5 = swiftMessage.Block5,
-			};
-			return result;
+            SwiftMessage swiftMessage = new SwiftParser().GetSwiftMessage(message);
+            MT559 result = new MT559()
+            {
+                Block1 = swiftMessage.Block1,
+                Block2 = swiftMessage.Block2,
+                Block3 = swiftMessage.Block3,
+                Block4 = swiftMessage.Block4,
+                Block5 = swiftMessage.Block5,
+            };
+            return result;
         }
-        
+
         public static string Write(MT559 message)
         {
-			return new SwiftWriter().GetFinMessage(message);
+            return new SwiftWriter().GetFinMessage(message);
         }
     }
 }

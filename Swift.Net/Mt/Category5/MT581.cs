@@ -13,15 +13,15 @@ namespace Swift.Net.Mt.Category5
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    
-    
+
+
     /// <summary>
     /// MT581 (SRG 2019)
     /// <summary>
     public partial class MT581 : SwiftMessage
     {
-        
-		public override SwiftBlock4 Block4 { get => new SwiftBlock4(GetBlock4Tags()); set => SetBlock4Tags(value); }
+
+        public override SwiftBlock4 Block4 { get => new SwiftBlock4(GetBlock4Tags()); set => SetBlock4Tags(value); }
 
         /// <summary>
         /// Transaction Reference Number
@@ -59,110 +59,110 @@ namespace Swift.Net.Mt.Category5
         /// Sender To Receiver Information
         /// <summary>
 		public string Tag72_SenderToReceiverInformation { get; set; }
-        
+
         public MT581()
         {
         }
-        
+
         public MT581(SwiftTagList tags)
         {
-			SetBlock4Tags(tags);
+            SetBlock4Tags(tags);
         }
-        
+
         public virtual SwiftTagList GetBlock4Tags()
         {
-			SwiftTagList tags = new SwiftTagList();
-			if (Tag20_TransactionReferenceNumber != null)
-				tags.Add(new SwiftTag("20", Tag20_TransactionReferenceNumber));
-			if (Tag21_RelatedReference != null)
-				tags.Add(new SwiftTag("21", Tag21_RelatedReference));
-			if (Tag23_FurtherIdentification != null)
-				tags.Add(new SwiftTag("23", Tag23_FurtherIdentification));
-			if (Tag30_DateOfAdjustment != null)
-				tags.Add(new SwiftTag("30", Tag30_DateOfAdjustment));
-			if (Tag35H_AdjustmentToTheCollateral != null)
-				tags.Add(new SwiftTag("35H", Tag35H_AdjustmentToTheCollateral));
-			if (Tag35B_IdentificationOfSecuritiesUsedAsCollateral != null)
-				tags.Add(new SwiftTag("35B", Tag35B_IdentificationOfSecuritiesUsedAsCollateral));
-			if (Tag80C_ReasonForCollateralAdjustment != null)
-				tags.Add(new SwiftTag("80C", Tag80C_ReasonForCollateralAdjustment));
-			if (Tag34B_OutstandingCollateralValue != null)
-				tags.Add(new SwiftTag("34B", Tag34B_OutstandingCollateralValue));
-			if (Tag72_SenderToReceiverInformation != null)
-				tags.Add(new SwiftTag("72", Tag72_SenderToReceiverInformation));
-			return tags;
+            SwiftTagList tags = new SwiftTagList();
+            if (Tag20_TransactionReferenceNumber != null)
+                tags.Add(new SwiftTag("20", Tag20_TransactionReferenceNumber));
+            if (Tag21_RelatedReference != null)
+                tags.Add(new SwiftTag("21", Tag21_RelatedReference));
+            if (Tag23_FurtherIdentification != null)
+                tags.Add(new SwiftTag("23", Tag23_FurtherIdentification));
+            if (Tag30_DateOfAdjustment != null)
+                tags.Add(new SwiftTag("30", Tag30_DateOfAdjustment));
+            if (Tag35H_AdjustmentToTheCollateral != null)
+                tags.Add(new SwiftTag("35H", Tag35H_AdjustmentToTheCollateral));
+            if (Tag35B_IdentificationOfSecuritiesUsedAsCollateral != null)
+                tags.Add(new SwiftTag("35B", Tag35B_IdentificationOfSecuritiesUsedAsCollateral));
+            if (Tag80C_ReasonForCollateralAdjustment != null)
+                tags.Add(new SwiftTag("80C", Tag80C_ReasonForCollateralAdjustment));
+            if (Tag34B_OutstandingCollateralValue != null)
+                tags.Add(new SwiftTag("34B", Tag34B_OutstandingCollateralValue));
+            if (Tag72_SenderToReceiverInformation != null)
+                tags.Add(new SwiftTag("72", Tag72_SenderToReceiverInformation));
+            return tags;
         }
-        
+
         public virtual void SetBlock4Tags(SwiftTagList tags)
         {
-			int i = 0;
-			foreach(SwiftTag tag in tags)
-			{
-				if ((tag.Name == "20") && (i <= 1))
-				{
-					Tag20_TransactionReferenceNumber = tag.Value;
-					i = 1;
-				}
-				else if ((tag.Name == "21") && (i <= 2))
-				{
-					Tag21_RelatedReference = tag.Value;
-					i = 2;
-				}
-				else if ((tag.Name == "23") && (i <= 3))
-				{
-					Tag23_FurtherIdentification = tag.Value;
-					i = 3;
-				}
-				else if ((tag.Name == "30") && (i <= 4))
-				{
-					Tag30_DateOfAdjustment = tag.Value;
-					i = 4;
-				}
-				else if ((tag.Name == "35H") && (i <= 5))
-				{
-					Tag35H_AdjustmentToTheCollateral = tag.Value;
-					i = 5;
-				}
-				else if ((tag.Name == "35B") && (i <= 6))
-				{
-					Tag35B_IdentificationOfSecuritiesUsedAsCollateral = tag.Value;
-					i = 6;
-				}
-				else if ((tag.Name == "80C") && (i <= 7))
-				{
-					Tag80C_ReasonForCollateralAdjustment = tag.Value;
-					i = 7;
-				}
-				else if ((tag.Name == "34B") && (i <= 8))
-				{
-					Tag34B_OutstandingCollateralValue = tag.Value;
-					i = 8;
-				}
-				else if ((tag.Name == "72") && (i <= 9))
-				{
-					Tag72_SenderToReceiverInformation = tag.Value;
-					i = 9;
-				}
-			}
+            int i = 0;
+            foreach (SwiftTag tag in tags)
+            {
+                if ((tag.Name == "20") && (i <= 1))
+                {
+                    Tag20_TransactionReferenceNumber = tag.Value;
+                    i = 1;
+                }
+                else if ((tag.Name == "21") && (i <= 2))
+                {
+                    Tag21_RelatedReference = tag.Value;
+                    i = 2;
+                }
+                else if ((tag.Name == "23") && (i <= 3))
+                {
+                    Tag23_FurtherIdentification = tag.Value;
+                    i = 3;
+                }
+                else if ((tag.Name == "30") && (i <= 4))
+                {
+                    Tag30_DateOfAdjustment = tag.Value;
+                    i = 4;
+                }
+                else if ((tag.Name == "35H") && (i <= 5))
+                {
+                    Tag35H_AdjustmentToTheCollateral = tag.Value;
+                    i = 5;
+                }
+                else if ((tag.Name == "35B") && (i <= 6))
+                {
+                    Tag35B_IdentificationOfSecuritiesUsedAsCollateral = tag.Value;
+                    i = 6;
+                }
+                else if ((tag.Name == "80C") && (i <= 7))
+                {
+                    Tag80C_ReasonForCollateralAdjustment = tag.Value;
+                    i = 7;
+                }
+                else if ((tag.Name == "34B") && (i <= 8))
+                {
+                    Tag34B_OutstandingCollateralValue = tag.Value;
+                    i = 8;
+                }
+                else if ((tag.Name == "72") && (i <= 9))
+                {
+                    Tag72_SenderToReceiverInformation = tag.Value;
+                    i = 9;
+                }
+            }
         }
-        
+
         public static MT581 Parse(string message)
         {
-			SwiftMessage swiftMessage = new SwiftParser().GetSwiftMessage(message);
-			MT581 result = new MT581()
-			{
-				Block1 = swiftMessage.Block1,
-				Block2 = swiftMessage.Block2,
-				Block3 = swiftMessage.Block3,
-				Block4 = swiftMessage.Block4,
-				Block5 = swiftMessage.Block5,
-			};
-			return result;
+            SwiftMessage swiftMessage = new SwiftParser().GetSwiftMessage(message);
+            MT581 result = new MT581()
+            {
+                Block1 = swiftMessage.Block1,
+                Block2 = swiftMessage.Block2,
+                Block3 = swiftMessage.Block3,
+                Block4 = swiftMessage.Block4,
+                Block5 = swiftMessage.Block5,
+            };
+            return result;
         }
-        
+
         public static string Write(MT581 message)
         {
-			return new SwiftWriter().GetFinMessage(message);
+            return new SwiftWriter().GetFinMessage(message);
         }
     }
 }

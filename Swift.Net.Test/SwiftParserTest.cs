@@ -1,6 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Swift.Net;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Swift.Net.Test
