@@ -14,7 +14,12 @@ namespace Swift.Net
             Tags = new List<SwiftTag>();
         }
 
-        public SwiftTagList(SwiftTagList swiftTags) : base()
+        public SwiftTagList(SwiftTagList swiftTags) : this()
+        {
+            Tags.AddRange(swiftTags);
+        }
+
+        public SwiftTagList(List<SwiftTag> swiftTags) : this()
         {
             Tags.AddRange(swiftTags);
         }
@@ -96,6 +101,56 @@ namespace Swift.Net
         public override int GetHashCode()
         {
             return 444497600 + EqualityComparer<List<SwiftTag>>.Default.GetHashCode(Tags);
+        }
+
+        public SwiftTag GetTag(string tagName)
+        {
+            return Tags.FirstOrDefault(x => x.Name == tagName);
+        }
+
+        public SwiftTag GetTag(string tagName, string startTag)
+        {
+            bool isInIntervalle = false;
+            foreach (SwiftTag tag in Tags)
+            {
+                if (!isInIntervalle && (tag.Name == startTag))
+                {
+                    isInIntervalle = true;
+                }
+                if (isInIntervalle && (tag.Name == tagName))
+                {
+                    return tag;
+                }
+            }
+            return null;
+        }
+
+        public SwiftTagList GetTags(string tagName)
+        {
+            return new SwiftTagList(Tags.Where(x => x.Name == tagName).ToList());
+        }
+
+        public SwiftTagList GetTags(string tagName, string startTag, string endTag)
+        {
+            SwiftTagList result = new SwiftTagList();
+
+            bool isInIntervalle = false;
+            foreach (SwiftTag tag in Tags)
+            {
+                if (!isInIntervalle && (tag.Name == startTag))
+                {
+                    isInIntervalle = true;
+                }
+                if (isInIntervalle && (tag.Name == endTag))
+                {
+                    isInIntervalle = false;
+                }
+                if (isInIntervalle && (tag.Name == tagName))
+                {
+                    result.Add(tag);
+                }
+            }
+            return result;
         }
 
         public List<SwiftTagList> GetSubBlocks(SwiftTag startTag, SwiftTag endTag)
